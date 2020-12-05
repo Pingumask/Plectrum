@@ -1,0 +1,42 @@
+{
+    "Villageois": {
+        "camp": "Village",
+		"tour": "aucun",
+        "pouvoir": "N'a aucun pouvoir particulier."
+	},
+    "Loup-garou": {
+        "camp": "Loups",
+		"tour": "1",
+        "pouvoir": "S'il n'y a qu'un seul loup-garou dans la partie, peut regarder un des rôles exilés."
+    },
+	"Loup-rêveur": {
+        "camp": "Loups",
+		"tour": "aucun",
+        "pouvoir": "Son identité est dévoilée aux autres loups, mais lui ne sait pas qui sont ses alliés."
+    },
+	"Voyante": {
+        "camp": "Village",
+		"tour": "2",
+        "pouvoir": "A son tour, peut découvrir le rôle d'un autre joueur."
+    },
+	"Voleur": {
+        "camp": "Village",
+		"tour": "3",
+        "pouvoir": "A son tour, peut échanger son rôle avec celui d'un autre joueur."
+    },
+    "Noiseuse": {
+        "camp": "Village",
+		"tour": "4",
+        "pouvoir": "A son tour, peut échanger les rôles de deux autres joueurs entre eux."
+    },
+	"Ivrogne": {
+        "camp": "Village",
+		"tour": "5",
+        "pouvoir": "A son tour, doit échanger son rôle avec un de ceux exilés sans découvrir son nouveau rôle."
+    },
+    "Insomniaque": {
+        "camp": "Village",
+		"tour": "6",
+        "pouvoir": "A la fin de la nuit, aprend son nouveau rôle s'il en a changé."
+    }
+}
