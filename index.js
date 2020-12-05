@@ -1,4 +1,5 @@
 console.log('Initialisation');
+require('dotenv').config();
 const Discord = require('discord.js');
 const client = new Discord.Client({ partials: ['MESSAGE', 'CHANNEL', 'REACTION'] });
 var wd=require("word-definition");
@@ -7,7 +8,7 @@ var vars=require('./vars.json');
 var pendingRenames={};
 let defaultPrefix="/";
 
-client.login(vars.discordToken);
+client.login(process.env.DISORD_TOKEN);
 
 client.on("ready",()=>{
     console.log(client.user.tag+' Prêt');
