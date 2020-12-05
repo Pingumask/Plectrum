@@ -66,22 +66,13 @@ client.on("message", async msg => {
             });          
             return msg.channel.send(`Channel de reception des demandes de rename réglé à ${args[1]}`);        
         }
-        if (args[0]=="twitch"){
-            if (vars[msg.guild.id]['twitch']===undefined) vars[msg.guild.id]['twitch']={};
-            vars[msg.guild.id]['twitch'][args[1]]=args[2];
-            fs.writeFile("./vars.json",JSON.stringify(vars,null,4), (err)=>{
-                if(err) return console.error(err);
-            });          
-            return msg.channel.send(`Reception des lives twitch de ${args[1]} dans le channel ${args[2]}`);
-        }
         if (args[0]=="list"){
             return msg.reply(JSON.stringify(vars[msg.guild.id]));
         }
         msg.reply(`
 Pour consulter les réglages du bot sur le serveur : ${vars[msg.guild.id]['prefix']}config list 
 Pour changer le prefix du bot : ${vars[msg.guild.id]['prefix']}config prefix NouveauPrefix
-Pour changer le channel de reception des demandes de rename : ${vars[msg.guild.id]['prefix']}config renameChannel #channel 
-Pour annoncer automatiquement les streams twitch des membres qui ont certain role : ${vars[msg.guild.id]['prefix']}config twitch @role #channel`);//Aide si la commande config a été tapée sans arguments valides
+Pour changer le channel de reception des demandes de rename : ${vars[msg.guild.id]['prefix']}config renameChannel #channel`);//Aide si la commande config a été tapée sans arguments valides
     }
 
     if (command=='roll' || command=='r'){
@@ -183,31 +174,6 @@ client.on('messageReactionAdd', async(reaction, user) => {
         }
         delete pendingRenames[reaction.message.guild.id][reaction.message.id];
     }
-});
-
-client.on('presenceUpdate', async(oldPresence, newPresence) => {
-    if (newPresence.activities[0]===undefined) return;    
-    if (vars[newPresence.guild.id]===undefined) return;   
-    if (vars[newPresence.guild.id]['twitch']===undefined) return;
-    if (vars[newPresence.guild.id]['twitch'].length==0) return;
-    if (!newPresence.member.roles.cache.some((role)=> chan = vars[newPresence.guild.id]['twitch'][role])) return;
-    newPresence.activities.forEach((newActivity)=>{     
-        let sameStream=false;   
-        if(newActivity.type=="STREAMING"){
-            if(oldPresence.activities[0]!==undefined){                
-                oldPresence.activities.forEach((oldActivity)=>{
-                    if (oldActivity.state==newActivity.state){                        
-                        sameStream=true;
-                    }
-                });
-            }
-            if (sameStream) return;
-            let regex= /<#(.+)>/;
-            let chanId =chan.replace(regex,'$1');
-            client.channels.cache.get(chanId).send(`${newPresence.user} Streame ${newActivity.state} : ${newActivity.details} @here \r${newActivity.url}`);
-            console.log(`${newPresence.guild.name}, @${newPresence.member.displayName} Streame ${newActivity.state} : ${newActivity.details} [${newActivity.url}]`);
-        }
-    });          
 });
 
 function LogCommand(msg){
