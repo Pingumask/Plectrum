@@ -9,11 +9,7 @@ Le bot est désormais capable de :
 
 Pour installer le bot sur votre machine :
 
-    - Installez les dépendence npm :
-        - npm install discord.js
-        - npm install dotenv
-        - npm install word-definition
-    - Installez le package.json
+    - npm install
     - Renommez les fichiers vars.json.example en vars.json et .env.example en .env
     - Renseignez votre token discord dans le fichier .env
-    - Démarrez index.js
+    - npm start
